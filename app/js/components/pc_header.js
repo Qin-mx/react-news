@@ -1,9 +1,11 @@
 import React from 'react'
-import { Row, Col, Menu, Icon, Message, Form, Input, Button, Checkbox, Modal, message } from 'antd'
+import { Row, Col, Menu, Icon, Message, Form, Input, Button, Checkbox, Modal, message,Tabs } from 'antd'
+import {Router, Route, Link, browserHistory} from 'react-router'
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 const FormItem = Form.Item;
+const TabPane = Tabs.TabPane;
 
 
 class PCHeader extends React.Component{
@@ -64,11 +66,19 @@ class PCHeader extends React.Component{
         this.setState({ modelVisible });
     }
 
+    callback(key) {
+		if (key == 1) {
+			this.setState({action: 'login'});
+		} else if (key == 2) {
+			this.setState({action: 'register'});
+		}
+    };
+    
     render(){
         const { getFieldProps } = this.props.form;
         const userShow = this.state.hasLogined
         ?
-        <Menu.Item key="logout" class="register">
+        <Menu.Item key="logout" className="register">
             <Button type="primary" htmlType="button">{this.state.userNickName}</Button>
             &nbsp; &nbsp;
             <Link target="_blank">
@@ -78,7 +88,7 @@ class PCHeader extends React.Component{
             <Button type="ghost" htmlType="button">退出</Button>
         </Menu.Item>
         :
-        <Menu.Item key="register" class="register">
+        <Menu.Item key="register" className="register">
             <Icon type="appstore"/>注册/登录
         </Menu.Item>;
         return (
@@ -123,6 +133,8 @@ class PCHeader extends React.Component{
 
                         <Modal title="用户中心" wrapClassName="vertical-center-modal" visible={this.state.modelVisible}  
                         onCancel={() => this.setmodelVisible(false)} onOk={() => this.setmodelVisible(false)} okText="关闭" cancelText="取消">
+                        <Tabs type="card" onChange={this.callback.bind(this)}>
+								<TabPane tab='注册' key="1">
                             <Form  onSubmit={this.handleSubmit.bind(this)}>
                                 <FormItem
                                     label="账户"
@@ -147,6 +159,8 @@ class PCHeader extends React.Component{
                                 </FormItem>
                                 <Button type="primary" htmlType="submit">注册</Button>
                             </Form>
+                            </TabPane>
+							</Tabs>
                         </Modal>
                     </Col>
                     <Col span={2}></Col>
