@@ -12,7 +12,11 @@ export default class PCNewsBlock extends React.Component {
 		var myFetchOptions = {
 			method: 'GET'
 		};
-        fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.props.count, myFetchOptions)
+		var myHeaders = new Headers({
+			'Access-Control-Allow-Origin': '*',
+			'Content-Type': 'text/plain'
+		});
+        fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.props.count, myFetchOptions,myHeaders)
         .then(response => response.json())
         .then(json => this.setState({news: json}));
 	};
