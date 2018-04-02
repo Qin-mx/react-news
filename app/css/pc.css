@@ -28,6 +28,9 @@ h3{
 .register {
     float: right !important;
 }
+.register a{
+    display: inline-block !important;
+}
 
 .container {
     padding: 10px 0 0;

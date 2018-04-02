@@ -1,5 +1,6 @@
 import React from 'react'
 import { Row, Col , Menu, Icon, Message, Form, Input, Button, Checkbox, Modal, message } from 'antd'
+import {NavLink} from 'react-router-dom'
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -21,7 +22,12 @@ class MobileHeader extends React.Component{
             userId: 0
         }
     }
-
+    componentWillMount(){
+		if (localStorage.userid!='') {
+			this.setState({hasLogined:true});
+			this.setState({userNickName:localStorage.userNickName,userid:localStorage.userid});
+		}
+    }
     handleClick(e){
         console.log(e)
         if(e.key == 'register'){
@@ -70,15 +76,18 @@ class MobileHeader extends React.Component{
         const { getFieldProps } = this.props.form;
         const userShow = this.state.hasLogined
         ?
-        <Link>
+        <NavLink exact to="/usercenter" target="_blank">
              <Icon type="user"/>
-        </Link>
+        </NavLink>
         :
         <Icon type="setting" onClick={this.login.bind(this)} />;
         return (
             <div id="mobileheader">
                 <header>
+                    <a href="#">
                     <img src="./app/images/news.png" alt="logo"/>
+                    </a>
+                   
                     <span>ReactNews</span>
                     {userShow}
                 </header>
