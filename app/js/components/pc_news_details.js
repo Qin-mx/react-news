@@ -17,7 +17,7 @@ export default class PCNewsDetails extends React.Component {
         var myFetachOptions = {
             method: 'GET'
         }
-        fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnewsitem&uniquekey=" + this.props.match.params.uniquekey, myFetachOptions)
+        fetch("https://newsapi.gugujiankong.com/Handler.ashx?action=getnewsitem&uniquekey=" + this.props.match.params.uniquekey, myFetachOptions)
         .then(response => response.json())
         .then(json => {
             console.log('是否进入接口')

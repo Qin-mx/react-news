@@ -25,13 +25,13 @@ export default class MobileUserCenter extends React.Component{
 		var myFetchOptions = {
 			method: 'GET'
 		};
-		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getuc&userid=" + localStorage.userid, myFetchOptions)
+		fetch("https://newsapi.gugujiankong.com/Handler.ashx?action=getuc&userid=" + localStorage.userid, myFetchOptions)
 		.then(response=>response.json())
 		.then(json=>{
 			this.setState({usercollection:json});
 		});
 
-		fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getusercomments&userid=" + localStorage.userid, myFetchOptions)
+		fetch("https://newsapi.gugujiankong.com/Handler.ashx?action=getusercomments&userid=" + localStorage.userid, myFetchOptions)
 		.then(response=>response.json())
 		.then(json=>{
 			this.setState({usercomments:json});
@@ -46,7 +46,7 @@ export default class MobileUserCenter extends React.Component{
 
     render(){
         const props = {
-            action: 'http://newsapi.gugujiankong.com/handler.ashx',
+            action: 'https://newsapi.gugujiankong.com/handler.ashx',
             headers: {
                 'Access-Control-Allow-Origin':'*'
             },
