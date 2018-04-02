@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
     entry:'./app/index.js',
     output:{
-        publicPath: '/', // 公共路径
+        publicPath: 'dist/', // 公共路径
         filename: 'index.js',
         path: path.resolve(__dirname,'dist')
     },
